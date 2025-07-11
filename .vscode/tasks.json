@@ -1,0 +1,12 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell",
+			"label": "Instalar React en frontend",
+			"command": "npx create-react-app .",
+			"group": "build",
+			"isBackground": false
+		}
+	]
+}
