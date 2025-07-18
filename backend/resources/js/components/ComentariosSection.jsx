@@ -21,7 +21,7 @@ const comentarios = [
 export default function ComentariosSection() {
   return (
     <div className="ganadoras-comentarios-col">
-      <h2 className="ganadoras-section-title">Ganadoras de la semana!!!</h2>
+      <h2 className="ganadoras-section-title">Ganadoras de la semana</h2>
       {comentarios.map((c, i) => (
         <div className="comentario" key={i}>
           <div className="estrellas">

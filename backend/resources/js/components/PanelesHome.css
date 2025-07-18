@@ -48,25 +48,26 @@
  .paneles-flex-row {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-end;
-  gap: 0;
+  gap: 40px;
   width: 100%;
-  border: 3px solid #0066ff !important; /* Borde azul fuerte y forzado */
 }
 
-.paneles-mapa-col {
-  width: 340px;
-  max-width: 340px;
+.paneles-cartas-col {
+  flex: 2 1 400px;
+  min-width: 320px;
+  transform: none;
+  border: 2px solid red; /* Borde temporal para visualizar límites */
+}
+
+ .paneles-mapa-col {
+  flex: 1 1 320px;
+  min-width: 260px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   border: 3px solid #0066ff !important; /* Borde azul fuerte y forzado */
-  /* margin-left eliminado para permitir alineación derecha */
-}
-.paneles-cartas-col {
-  width: 600px;
-  max-width: 600px;
 }
 
 @media (max-width: 900px) {

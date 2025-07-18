@@ -36,9 +36,62 @@
 
 ---
 
-## Recomendaciones para el Futuro
-- Siempre verifica que las rutas de los assets en el blade coincidan con los archivos generados en el último build.
-- Si la SPA no se monta, revisa que el JS principal se cargue y ejecute correctamente.
-- Ante errores de autenticación, revisa el flujo CSRF y los datos enviados.
-- Mantén una ruta catch-all en Laravel para servir la SPA.
-- Automatiza la actualización de assets en el blade tras cada build.
+# Informe de Solución: Problema de Build y Sincronización de Assets
+
+**Fecha:** 16/07/2025
+
+## Resumen del problema
+Durante varias horas, los cambios realizados en el frontend (React) no se reflejaban correctamente en la aplicación Laravel. Los assets generados por el build de React no se actualizaban en el backend, lo que provocaba que los cambios visuales y de lógica no aparecieran, incluyendo logs y eventos en la consola.
+
+## Causas identificadas
+- El build de React se generaba en la carpeta `frontend/build`, pero no se copiaba automáticamente a `backend/public/build`.
+- El script de actualización de assets (`update_blade_assets.ps1`) fallaba si no encontraba los archivos generados en la ruta esperada.
+- Existían bucles y errores por invocaciones incorrectas de PowerShell y npm dentro de los scripts.
+
+## Solución implementada
+1. **Automatización del proceso de build:**
+   - Se corrigió el script de build en `package.json` para ejecutar primero el build de React y luego el script PowerShell que copia los archivos y actualiza los assets.
+   - El script `build_and_update.ps1` ahora solo copia los archivos generados y actualiza los assets blade, sin ejecutar el build de React.
+   - El comando final es: `npm run build`, que ejecuta todo el flujo automáticamente.
+
+2. **Verificación y limpieza:**
+   - Se eliminaron archivos antiguos y se forzó un build limpio para evitar referencias obsoletas.
+   - Se validó que los assets en `react-assets.blade.php` se actualizan correctamente tras cada build.
+
+## Resultado
+- El proceso de build y sincronización de assets quedó completamente automatizado.
+- Los cambios en el frontend se reflejan de inmediato en la aplicación Laravel tras ejecutar `npm run build`.
+- Los logs y eventos de React aparecen correctamente en la consola del navegador.
+
+## Recomendaciones
+- Mantener este flujo automatizado para evitar problemas similares en el futuro.
+- Si se modifica la estructura de carpetas o el nombre de los archivos generados por React, actualizar el script `update_blade_assets.ps1` acorde.
+
+---
+
+# Estructura recomendada para informes de solución de problemas
+
+## 1. Título
+Breve y descriptivo del problema resuelto.
+
+## 2. Fecha
+Fecha en la que se documenta la solución.
+
+## 3. Resumen del problema
+Descripción clara del síntoma y cómo se manifestó en el proyecto.
+
+## 4. Causas identificadas
+Lista de causas técnicas o de configuración que originaron el problema.
+
+## 5. Solución implementada
+Pasos concretos y cambios realizados para resolver el problema.
+
+## 6. Resultado
+Estado final tras aplicar la solución y cómo se validó.
+
+## 7. Recomendaciones
+Consejos para evitar el problema en el futuro o para mantener la solución.
+
+---
+
+**Solución documentada por GitHub Copilot**

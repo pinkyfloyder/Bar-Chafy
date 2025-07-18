@@ -151,7 +151,11 @@ const Navbar = () => {
       {showLoginModal && (
         <LoginForm onClose={() => { setShowLoginModal(false); const stored = localStorage.getItem('user'); if (stored) setUser(JSON.parse(stored)); }} onLogin={(user) => { setUser(user); setSyncTrigger(t => t + 1); setShowLoginModal(false); }} />
       )}
-      {/* ...existing code... */}
+      {/* Bloque temporal de depuración: muestra el estado user */}
+      <div style={{background:'#222', color:'#fff', padding:'10px', margin:'10px 0', borderRadius:'8px', fontSize:'14px'}}>
+        <strong>DEBUG user:</strong>
+        <pre style={{whiteSpace:'pre-wrap', wordBreak:'break-all'}}>{JSON.stringify(user, null, 2)}</pre>
+      </div>
     </>
   );
 }

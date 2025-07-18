@@ -19,7 +19,7 @@ const PanelesHome = () => (
     </div>
     <div className="comentarios-ganadoras-row">
       <div className="comentarios-col">
-        <h2 className="ganadoras-section-title">Ganadoras de la semana!!!</h2>
+        <h2 className="ganadoras-section-title">Ganadoras de la semana</h2>
         <ComentariosSection />
       </div>
       <div className="ganadoras-col">
