@@ -1,0 +1,161 @@
+/* Ahora la sección se adapta a columna para el panel lateral */
+.ganadoras-flex-row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  margin: 0;
+}
+
+.ganadoras-comentarios-col {
+  flex: 1 1 350px;
+  min-width: 280px;
+}
+
+.ganadoras-lateral-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 220px;
+  border: 2px solid blue;
+}
+
+.ganadoras-section-title {
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 100%;
+  display: block;
+  letter-spacing: 1px;
+  color: #8B4513;
+  text-shadow: 0 2px 8px #fff, 0 0 2px #ffd70022;
+}
+.ganadoras-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  gap: 40px;
+  margin: 40px auto 0 auto;
+  padding: 32px 24px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  max-width: 900px;
+}
+.ganadoras-comentarios {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.ganadoras-comentarios h2 {
+  margin-bottom: 18px;
+  font-size: 2rem;
+  text-align: left;
+}
+.comentario {
+  margin-bottom: 18px;
+  background: #fafafa;
+  border-radius: 12px;
+  margin: 24px auto;
+  padding: 24px 32px 16px 32px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  max-width: 520px;
+  min-width: 220px;
+  width: fit-content;
+  text-align: center;
+}
+.estrellas {
+.ganadoras-section-title {
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-bottom: 18px;
+  text-align: center;
+  width: 100%;
+  display: block;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 8px #fff, 0 0 2px #ffd70022;
+}
+  margin-bottom: 6px;
+}
+.comentario-texto {
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+}
+.comentario-nombre {
+  font-size: 0.95rem;
+  color: #666;
+}
+.ganadoras-foto {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ganadoras-foto img {
+  max-width: 260px;
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+}
+
+
+.ganadoras-main-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+  justify-content: center;
+  margin: 32px 0;
+}
+
+.ganadoras-comentarios {
+  flex: 1 1 350px;
+  min-width: 280px;
+  border: 2px solid blue;
+}
+
+.ganadoras-img-container {
+  position: relative;
+  border: 6px solid gold;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+  width: 400px;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 0;
+}
+
+.ganadoras-img-title {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #ffd700;
+  font-size: 2.1rem;
+  font-weight: bold;
+  text-shadow: 0 2px 8px #fff, 0 0 2px #ffd70022;
+  z-index: 2;
+  margin-top: 0;
+  margin-bottom: 18px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.ganadoras-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  display: block;
+  filter: brightness(0.95);
+  margin: 0;
+  object-fit: cover;
+  object-position: center;
+}

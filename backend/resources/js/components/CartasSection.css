@@ -1,0 +1,140 @@
+ .cartas-section {
+  margin: 0;
+  max-width: 900px;
+  text-align: center;
+  border: 2px solid blue; /* Borde azul para visualizar límites */
+  height: 100%;
+}
+
+.cartas-como-flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 40px;
+  width: 100%;
+}
+
+.cartas-section h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 24px;
+  letter-spacing: 2px;
+}
+
+.cartas-panel {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 18px;
+}
+
+/* --- CARTAS UNIFORMES --- */
+.carta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  min-width: 260px;
+  min-height: 340px;
+  width: 260px;
+  height: 340px;
+}
+
+.carta-birra { background: #ffe082; }
+.carta-burger { background: #ffcc80; }
+.carta-pizza { background: #b2dfdb; }
+
+.cartas-btn {
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 10px 28px;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.cartas-btn:hover {
+  background: #333;
+}
+
+
+/* --- IMAGEN DE LA CARTA --- */
+.carta-img-bg {
+  position: relative;
+  width: 260px;
+  height: 340px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.carta-img-bg-img {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.carta-frase {
+  position: absolute;
+  top: 16px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+  top: 180px; /* Ajusta este valor para que quede justo sobre el vaso */
+  margin: 0;
+}
+
+/* --- TITULO DE LA CARTA --- */
+.carta-content h3, .carta-titulo {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  bottom: 24px;
+  margin: 0;
+  font-size: 1.5rem;
+  text-align: center;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+  background: rgba(0,0,0,0.15);
+  border-radius: 8px;
+  padding: 4px 0;
+  word-break: break-word;
+}
+
+/* --- CONTENIDO DE LA CARTA --- */
+.carta-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+}
+.carta-content p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.carta-panel {
+  background: #fff4e3;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding: 8px 0 0 0;
+  margin-bottom: 8px;
+  position: relative;
+}
+
+.carta-titulo {
+  font-size: 1.3rem;
+  word-break: break-word;
+  text-align: center;
+  margin: 0 8px 0 8px;
+}
