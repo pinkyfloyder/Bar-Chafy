@@ -35,6 +35,10 @@ class AuthController extends Controller
     // Login de usuario
     public function login(Request $request)
     {
+        // Si la petición ya viene autenticada, rechazar login múltiple
+        if ($request->user()) {
+            return response()->json(['message' => 'Ya hay una sesión activa. Cierra sesión antes de iniciar una nueva.'], 403);
+        }
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
@@ -45,6 +49,9 @@ class AuthController extends Controller
         if (!$user || !Hash::check($request->password, $user->password)) {
             return response()->json(['message' => 'Credenciales incorrectas'], 401);
         }
+
+        // Revocar todos los tokens anteriores antes de crear uno nuevo
+        $user->tokens()->delete();
 
         $token = $user->createToken('auth_token')->plainTextToken;
 

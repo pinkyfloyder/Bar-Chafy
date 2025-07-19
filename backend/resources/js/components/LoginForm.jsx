@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import { useAuth } from '../../../../frontend/src/context/AuthContext';
 import './RegisterModalOverride.css';
 import { createPortal } from 'react-dom';
 import axios from 'axios';
 
-const LoginForm = ({ onClose, onLogin }) => {
+const LoginForm = ({ onClose }) => {
   const [form, setForm] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [validationErrors, setValidationErrors] = useState({});
   const [showModal, setShowModal] = useState(false);
+  const [alreadyLoggedMsg, setAlreadyLoggedMsg] = useState("");
+  const { isLogged, login } = useAuth();
 
   useEffect(() => {
     setShowModal(true);
@@ -28,16 +31,21 @@ const LoginForm = ({ onClose, onLogin }) => {
     setError('');
     setSuccess('');
     setValidationErrors({});
+    // Refuerzo UX: si ya hay usuario logueado, mostrar mensaje y no enviar petición
+    if (isLogged) {
+      setAlreadyLoggedMsg('Ya hay una sesión activa. Cierra sesión para cambiar de usuario.');
+      setTimeout(() => setAlreadyLoggedMsg(''), 2500);
+      return;
+    }
     try {
       const response = await axios.post('/api/login', form);
-      // Guardar usuario y token en localStorage y notificar a la app
+      // Guardar usuario y token usando el contexto global
       if (response.data && response.data.user && response.data.user.id && response.data.token) {
         localStorage.setItem('user', JSON.stringify(response.data.user));
-        localStorage.setItem('token', response.data.token);
+        login(response.data.token, response.data.user.name);
         setSuccess('¡Bienvenido! Login exitoso.');
         setForm({ email: '', password: '' });
         setTimeout(() => {
-          if (onLogin) onLogin(response.data.user);
           if (onClose) onClose();
         }, 1200);
       } else {
@@ -66,6 +74,7 @@ const LoginForm = ({ onClose, onLogin }) => {
         onClick={e => e.stopPropagation()}
       >
         <h2 className="text-5xl font-bold mb-10 text-orange-500 text-center tracking-widest drop-shadow-lg" style={{ fontFamily: 'Times New Roman, Times, serif', letterSpacing: '3px' }}>Login</h2>
+        {alreadyLoggedMsg && <div className="text-orange-500 mb-2 text-center font-bold">{alreadyLoggedMsg}</div>}
         {error && <div className="text-red-400 mb-2 text-center">{error}</div>}
         {success && <div className="text-green-400 mb-2 text-center">{success}</div>}
         {Object.keys(validationErrors).length > 0 && (
@@ -108,7 +117,8 @@ const LoginForm = ({ onClose, onLogin }) => {
           <button
             type="submit"
             className="w-full bg-orange-500 text-white py-4 rounded-2xl font-bold hover:bg-orange-600 transition text-2xl tracking-wider shadow-lg border-2 border-orange-400"
-            style={{ fontFamily: 'Times New Roman, Times, serif', letterSpacing: '2px' }}
+            style={{ fontFamily: 'Times New Roman, Times, serif', letterSpacing: '2px', opacity: isLogged ? 0.5 : 1, cursor: isLogged ? 'not-allowed' : 'pointer' }}
+            disabled={isLogged}
           >
             Iniciar sesión
           </button>
